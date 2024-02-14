@@ -1,1 +1,1 @@
-web: gunicorn cleaning_agency.wsgi
+web: gunicorn cleaning_agency.wsgi --log-file -
