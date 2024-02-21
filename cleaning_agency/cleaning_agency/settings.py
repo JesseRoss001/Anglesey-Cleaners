@@ -3,10 +3,10 @@ import dj_database_url
 import cloudinary
 import cloudinary_storage
 import os
-from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env
-SECRET_KEY = os.getenv('SECRET_KEY')
+
+
+SECRET_KEY = 'django-insecure-5^*pa^928$jc$lfrhf8zibxc4-#qy!3c_bz*h=_0x9a^1b5^g=' 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://angleseydomesticcleaners-370ce070db19.herokuapp.com']
+ALLOWED_HOSTS = ['angleseydomesticcleaners-370ce070db19.herokuapp.com']
 
 # Application definition
 
@@ -28,7 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloudinary_storage',
-    'cleaning_agency',  # Replace 'your_app_name' with the name of your Django app
+    'cleaning_agency',
+    'users',
+    'bookings',  # Replace 'your_app_name' with the name of your Django app
 ]
 
 MIDDLEWARE = [
@@ -62,8 +64,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cleaning_agency.wsgi.application'
 
 # Database configuration
+DATABASE_URL = 'postgres://zollifrd:HACbQZIfcuUBnQDBf4XNf-4NQ_FfP84p@trumpet.db.elephantsql.com/zollifrd'
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://postgres:Applegate001@cleaning-database.cxgksouwy6qp.eu-west-1.rds.amazonaws.com:5432/cleaning_database', conn_max_age=600)
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600, engine='django.db.backends.postgresql')
 }
 
 # Password validation

@@ -1,7 +1,7 @@
-#user app models . 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
+from bookings.models import GeneralLocation
 
 class User(AbstractUser):
     is_customer = models.BooleanField(default=False)
@@ -9,14 +9,32 @@ class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     contact_number = models.CharField(max_length=20, blank=True)
     email = models.EmailField(unique=True)
-    approved = models.BooleanField(default=False)  # For cleaner approval by admin
-    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)  # Optional: For cleaners
-    image = models.ImageField(upload_to='cleaner_images/', null=True, blank=True)  # Optional: For cleaners
+    approved = models.BooleanField(default=False)  
+    hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)  
+    image = models.ImageField(upload_to='cleaner_images/', null=True, blank=True)  
+    # Add related_name for general_area and selected_areas to avoid clashing
+    general_area = models.ForeignKey(
+        GeneralLocation, 
+        on_delete=models.SET_NULL, 
+        null=True, 
+        blank=True, 
+        related_name='users_with_general_area'
+    )
+    selected_areas = models.ManyToManyField(
+        GeneralLocation, 
+        verbose_name="Selected Service Areas", 
+        blank=True, 
+        related_name='users_with_selected_areas'
+    )
+
 
 class CustomerProfile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="customer_profile")
-    selected_area = models.ForeignKey('bookings.GeneralLocation', on_delete=models.CASCADE, verbose_name="Selected Service Area")
+    selected_areas = models.ManyToManyField(GeneralLocation, verbose_name="Selected Service Areas") 
+    postcode = models.CharField(max_length=10)  
+    address_line_1 = models.CharField(max_length=100)
+    address_line_2 = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.user.username}'s profile - Area: {self.selected_area.name}"
-# Create your models here.
+        return f"{self.user.username}'s profile - Areas: {', '.join(area.name for area in self.selected_areas.all())}"
