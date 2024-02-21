@@ -1,0 +1,91 @@
+/* Custom CSS */
+body, h1, h2, h3, h4, h5, h6, .btn, a {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Main Background */
+  body {
+    background-color: #FFFFFF; /* Clean White */
+  }
+  
+  /* Navbar styles */
+  .navbar-custom {
+    background-color: #87CEEB; /* Sky Blue */
+  }
+  
+  /* Navbar links */
+  .nav-link {
+    color: #000080; /* Navy Blue */
+  }
+  
+  .nav-link:hover {
+    color: #FFFFFF; /* White */
+  }
+  
+  /* Hero Section */
+  .display-4 {
+    color: #000080; /* Navy Blue */
+  }
+  
+  /* Buttons */
+  .btn-primary {
+    background-color: #000080; /* Navy Blue */
+    border-color: #000080; /* Navy Blue */
+    color: #FFFFFF; /* White */
+  }
+  
+  .btn-primary:hover {
+    background-color: #00008B; /* Darken Navy Blue */
+    border-color: #00008B; /* Darken Navy Blue */
+  }
+  
+  .btn-secondary {
+    background-color: #D3D3D3; /* Cool Gray */
+    border-color: #D3D3D3; /* Cool Gray */
+    color: #000080; /* Navy Blue */
+  }
+  
+  .btn-secondary:hover {
+    background-color: #A9A9A9; /* Darken Cool Gray */
+    border-color: #A9A9A9; /* Darken Cool Gray */
+  }
+  
+  /* Card styles */
+  .card {
+    border: none;
+  }
+  
+  .card-title {
+    color: #000080; /* Navy Blue */
+  }
+  
+  .card-text {
+    color: #000080; /* Navy Blue */
+  }
+  
+  /* Contact Section */
+  h2 {
+    color: #000080; /* Navy Blue */
+  }
+  
+  /* Footer styles */
+  footer {
+    background-color: #000080; /* Navy Blue */
+  }
+  
+  footer a {
+    color: #87CEEB; /* Sky Blue */
+  }
+  
+  footer a:hover {
+    color: #FFFFFF; /* White */
+  }
+  
+  footer p, footer form {
+    color: #FFFFFF; /* White */
+  }
+  
+  /* Subtle Dividers */
+  hr {
+    border-color: #D3D3D3; /* Cool Gray */
+  }
