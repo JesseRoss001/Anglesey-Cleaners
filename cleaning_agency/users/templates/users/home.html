@@ -100,8 +100,13 @@ footer a:hover {
           <li class="nav-item">
             <a class="nav-link" href="#">About Us</a>
           </li>
+          <!-- Customer Signup Link -->
           <li class="nav-item">
-            <a class="nav-link" href="#">Sign Up</a>
+            <a class="nav-link" href="{% url 'customer_signup' %}">Customer Sign Up</a>
+          </li>
+          <!-- Cleaner Signup Link -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cleaner_signup' %}">Cleaner Sign Up</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Learn More</a>
@@ -111,6 +116,7 @@ footer a:hover {
     </div>
   </nav>
 
+
   <!-- Hero Section -->
   <div class="container mt-5">
     <div class="row align-items-center">
@@ -119,7 +125,7 @@ footer a:hover {
             Uber of Cleaning Services in Anglesey</h1>
             <p class="lead">Discover reliable and affordable cleaning services in Anglesey with our convenient platform.</p>
             <a href="#" class="btn btn-primary me-2">Learn More</a>
-            <a href="#" class="btn btn-secondary">Sign Up</a>
+            <a href="{% url 'customer_signup' %}" class="btn btn-secondary">Sign Up</a>
             </div>
             <div class="col-lg-6">
             <!-- Placeholder for image -->
@@ -189,7 +195,7 @@ footer a:hover {
                       <div class="col-6">
                         <h5>For Cleaners</h5>
                         <p>Expand your client base and manage your schedule with ease.</p>
-                        <a href="#" class="btn btn-secondary">Sign Up</a>
+                        <a href="{% url 'cleaner_signup' %}" class="btn btn-secondary">Sign Up</a>
                       </div>
                     </div>
                   </div>
@@ -209,7 +215,7 @@ footer a:hover {
                       <input type="text" class="form-control" placeholder="Enter your location">
                       <button class="btn btn-primary" type="button">Find</button>
                     </div>
-                    <a href="#" class="btn btn-secondary">Sign Up</a>
+                    <a href="{% url 'customer_signup' %}" class="btn btn-secondary">Sign Up</a>
                   </div>
                 </div>
               </div>
