@@ -75,7 +75,113 @@ footer a {
 footer a:hover {
   color: var(--accent-color);
 }
+/* Style adjustments for the 'Find Out What Areas We Serve' section */
+.find-cleaner-section h3,
+.find-cleaner-section p,
+.find-cleaner-section .btn {
+  color: var(--text-color); /* Match text color to the theme */
+}
 
+/* Button styles */
+.btn-outline-primary {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* Modal content styles to match the theme */
+.modal-content {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 0.5rem; /* Rounded corners for modal */
+}
+
+.modal-header {
+  border-bottom: 1px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 1rem; /* Spacing inside the modal body */
+}
+
+.modal-body ul {
+  list-style: none; /* Remove default list styling */
+  padding: 0;
+  margin: 0;
+}
+/* Enhanced modal list item styling */
+.modal-list-item {
+  padding: 0.5rem 1rem; /* Add padding for better touch targets */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  cursor: pointer; /* Indicate the items are interactive */
+}
+
+/* Hover effect for list items */
+.modal-list-item:hover {
+  background-color: var(--accent-color); /* Highlight item on hover */
+  color: var(--primary-color); /* Change text color for contrast */
+}
+
+/* Maintain the modal body's padding to ensure consistent spacing */
+.modal-body {
+  padding: 1rem;
+}
+.modal-body li {
+  padding: 0.25rem 0; /* Spacing between list items */
+  font-size: 1.1rem; /* Slightly larger font size for readability */
+}
+
+/* Close button to match the modal header */
+.btn-close {
+  filter: invert(1); /* Make close button white to stand out */
+}
+
+/* Adjusting the close button position to align properly */
+.btn-close:focus {
+  box-shadow: none;
+}
+
+/* Enhance the list to match the website's style */
+.modal-footer {
+  border-top: 1px solid var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+.modal-footer .btn-secondary {
+  color: var(--text-color);
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.modal-footer .btn-secondary:hover {
+  color: var(--secondary-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+/* Close button color adjusted to match the theme */
+.btn-close {
+  filter: invert(58%) sepia(92%) saturate(1362%) hue-rotate(189deg) brightness(89%) contrast(87%);
+}
   </style>
 </head>
 <body>
@@ -205,20 +311,64 @@ footer a:hover {
                   </div>
                 </div>
               </div>
-              <!-- Find a Cleaner Today Section -->
-              <div class="container my-5">
-                <div class="row justify-content-center">
-                  <div class="col-md-8 text-center">
-                    <h3 class="mb-3">Find a Cleaner Today!</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <div class="input-group mb-3">
-                      <input type="text" class="form-control" placeholder="Enter your location">
-                      <button class="btn btn-primary" type="button">Find</button>
-                    </div>
-                    <a href="{% url 'customer_signup' %}" class="btn btn-secondary">Sign Up</a>
-                  </div>
-                </div>
-              </div>
+<!-- Find Out What Areas We Serve Section -->
+<div class="container my-5 find-cleaner-section">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+      <h3 class="mb-3">Find Out What Areas We Serve</h3>
+      <p>Explore the areas where our cleaning services are available.</p>
+      <!-- Trigger Modal Button -->
+      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#areasServeModal">
+        View Service Areas
+      </button>
+
+      <a href="{% url 'customer_signup' %}" class="btn btn-secondary ">Sign Up</a>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="areasServeModal" tabindex="-1" aria-labelledby="areasServeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="areasServeModalLabel">Service Areas</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul class="list-unstyled">
+                <li class="modal-list-item">Amlwch</li>
+                <li class="modal-list-item">Beaumaris</li>
+                <li class="modal-list-item">Benllech</li>
+                <li class="modal-list-item">Holyhead</li>
+                <li class="modal-list-item">Llangefni</li>
+                <li class="modal-list-item">Menai Bridge</li>
+                <li class="modal-list-item">Newborough</li>
+                <li class="modal-list-item">Aberffraw</li>
+                <li class="modal-list-item">Bodedern</li>
+                <li class="modal-list-item">Bryngwran</li>
+                <li class="modal-list-item">Brynsiencyn</li>
+                <li class="modal-list-item">Cemaes Bay</li>
+                <li class="modal-list-item">Gaerwen</li>
+                <li class="modal-list-item">Gwalchmai</li>
+                <li class="modal-list-item">Llanerchymedd</li>
+                <li class="modal-list-item">Llanfairpwllgwyngyll</li>
+                <li class="modal-list-item">Llangeinwen</li>
+                <li class="modal-list-item">Llangoed</li>
+                <li class="modal-list-item">Moelfre</li>
+                <li class="modal-list-item">Pentraeth</li>
+                <li class="modal-list-item">Rhosneigr</li>
+                <li class="modal-list-item">Bangor</li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
   <!-- Footer -->
   <footer class="bg-dark text-white pt-4 pb-2">
     <div class="container">
@@ -260,6 +410,20 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
     document.querySelector(this.getAttribute('href')).scrollIntoView({
       behavior: 'smooth'
+    });
+  });
+});
+
+
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Ensure dropdown closes on item selection and input field is updated
+  document.querySelectorAll('.dropdown-menu .dropdown-item').forEach(item => {
+    item.addEventListener('click', function() {
+      const locationInput = document.querySelector('.find-cleaner-section input[type="text"]');
+      locationInput.value = this.textContent; // Update input with selected location
+      // Optionally close the dropdown, Bootstrap might handle this depending on your version
     });
   });
 });
