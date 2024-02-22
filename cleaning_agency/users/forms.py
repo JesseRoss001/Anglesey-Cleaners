@@ -8,10 +8,8 @@ class CustomerSignUpForm(UserCreationForm):
     address_line_1 = forms.CharField(max_length=100)
     address_line_2 = forms.CharField(max_length=100, required=False)
     city = forms.CharField(max_length=50)
-    selected_areas = forms.ModelMultipleChoiceField(  # For selecting multiple areas
-        queryset=GeneralLocation.objects.all(), 
-        widget=forms.CheckboxSelectMultiple
-    )
+    selected_areas = forms.ModelChoiceField(queryset=GeneralLocation.objects.all()) 
+
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -22,10 +20,8 @@ class CleanerSignUpForm(UserCreationForm):
     hourly_rate = forms.DecimalField(max_digits=6, decimal_places=2)
     image = forms.ImageField(required=False)
     general_area = forms.ModelChoiceField(queryset=GeneralLocation.objects.all(), required=False)
-    selected_areas = forms.ModelMultipleChoiceField(
-        queryset=GeneralLocation.objects.all(), 
-        widget=forms.CheckboxSelectMultiple
-    )
+    selected_areas = forms.ModelMultipleChoiceField(queryset=GeneralLocation.objects.all()) 
+
 
     class Meta(UserCreationForm.Meta):
         model = User
