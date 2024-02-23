@@ -20,7 +20,11 @@ class CleanerSignUpForm(UserCreationForm):
     hourly_rate = forms.DecimalField(max_digits=6, decimal_places=2)
     image = forms.ImageField(required=False)
     general_area = forms.ModelChoiceField(queryset=GeneralLocation.objects.all(), required=False)
-    selected_areas = forms.ModelMultipleChoiceField(queryset=GeneralLocation.objects.all()) 
+    selected_areas = forms.ModelMultipleChoiceField(
+        queryset=GeneralLocation.objects.all(),
+        required=False,
+        help_text="Tap to select multiple areas. On desktop, hold down the Ctrl (windows) / Command (Mac) button to select multiple options."
+    )
 
 
     class Meta(UserCreationForm.Meta):
