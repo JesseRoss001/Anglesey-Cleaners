@@ -30,9 +30,13 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cleaning_agency',
     'users',
+    "crispy_forms",
+    "crispy_bootstrap5",
     'bookings',  # Replace 'your_app_name' with the name of your Django app
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
+CRISPY_TEMPLATE_PACK = "bootstrap5" # or 'bootstrap5' if you're using Bootstrap 5
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
