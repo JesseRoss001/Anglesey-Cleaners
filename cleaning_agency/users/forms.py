@@ -8,7 +8,7 @@ class CustomerSignUpForm(UserCreationForm):
     address_line_1 = forms.CharField(max_length=100)
     address_line_2 = forms.CharField(max_length=100, required=False)
     city = forms.CharField(max_length=50)
-    selected_areas = forms.ModelChoiceField(queryset=GeneralLocation.objects.all()) 
+    selected_areas = forms.ModelMultipleChoiceField(queryset=GeneralLocation.objects.all())
 
 
     class Meta(UserCreationForm.Meta):

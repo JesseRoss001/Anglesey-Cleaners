@@ -3,7 +3,7 @@ from django.contrib.auth import logout, login
 from .forms import CustomerSignUpForm, CleanerSignUpForm 
 from .models import CustomerProfile # You might create a CleanerProfile model similarly
 from django.contrib.auth.decorators import login_required
-
+from bookings.models import GeneralLocation
 def home(request):
     # Your logic for the home page can go here
     return render(request, 'users/home.html')  # Render the home page template
@@ -16,17 +16,25 @@ def customer_signup(request):
             user = form.save(commit=False)
             user.is_customer = True
             user.save()
+            
+            # Assuming 'selected_areas' returns a list of IDs for GeneralLocation instances
+            selected_area_ids = form.cleaned_data['selected_areas']
+            selected_areas = GeneralLocation.objects.filter(id__in=selected_area_ids)
+
             # Create CustomerProfile
-            CustomerProfile.objects.create(
+            customer_profile = CustomerProfile.objects.create(
                 user=user,
                 postcode=form.cleaned_data['postcode'],
                 address_line_1=form.cleaned_data['address_line_1'],
                 address_line_2=form.cleaned_data.get('address_line_2', ''),
-                city=form.cleaned_data['city'],
-                selected_areas=form.cleaned_data['selected_areas']                
-             )
+                city=form.cleaned_data['city']
+            )
+            
+            # Assign selected_areas
+            customer_profile.selected_areas.set(selected_areas)
+            
             login(request, user)
-            return redirect('home')  
+            return redirect('home')
     else:
         form = CustomerSignUpForm()
     return render(request, 'users/customer_signup.html', {'form': form})
