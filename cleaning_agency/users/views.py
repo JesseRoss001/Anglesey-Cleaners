@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import logout, login
 from .forms import CustomerSignUpForm, CleanerSignUpForm 
 from .models import CustomerProfile # You might create a CleanerProfile model similarly
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     # Your logic for the home page can go here
@@ -61,3 +62,12 @@ def cleaner_signup(request):
     else:
         form = CleanerSignUpForm()
     return render(request, 'users/cleaner_signup.html', {'form': form})
+
+@login_required
+def book_now(request):
+    # Your logic for booking a service can go here
+    return render(request, 'users/book_now.html')  # Render the book now page template
+
+def logout_request(request):
+    logout(request)
+    return redirect('home')  # Redirect to home page after logout

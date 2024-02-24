@@ -102,21 +102,32 @@
           <li class="nav-item">
             <a class="nav-link" href="#">About Us</a>
           </li>
-          <!-- Customer Signup Link -->
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'customer_signup' %}">Customer Sign Up</a>
-          </li>
-          <!-- Cleaner Signup Link -->
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'cleaner_signup' %}">Cleaner Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Learn More</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <!-- Show 'Book Now' if user is authenticated and is a customer -->
+      {% if user.is_authenticated and user.is_customer %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'book_now' %}">Book Now</a>
+      </li>
+      {% endif %}
+
+      <!-- Show sign up links if user is not authenticated -->
+      {% if not user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'customer_signup' %}">Customer Sign Up</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cleaner_signup' %}">Cleaner Sign Up</a>
+      </li>
+      {% endif %}
+
+      <!-- Show a logout link if user is authenticated -->
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
 
   {% block content %}
   <!-- Page specific content goes here -->
