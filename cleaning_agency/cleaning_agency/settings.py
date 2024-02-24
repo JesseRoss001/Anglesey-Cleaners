@@ -68,7 +68,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cleaning_agency.wsgi.application'
 
 # Database configuration
-DATABASE_URL = 'postgres://zollifrd:HACbQZIfcuUBnQDBf4XNf-4NQ_FfP84p@trumpet.db.elephantsql.com/zollifrd'
+DATABASE_URL = 'postgres://moplsfffgnoakf:1a552e33c5437e5bbdcba5e06f26a65b66c5593f83cb2f06b6ccf693f4dbe26a@ec2-34-236-199-229.compute-1.amazonaws.com:5432/d84t4a9et5mu29'
 DATABASES = {
     'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600, engine='django.db.backends.postgresql')
 }
