@@ -108,7 +108,11 @@
         <a class="nav-link" href="{% url 'book_now' %}">Book Now</a>
       </li>
       {% endif %}
-
+      {% if user.is_authenticated and user.is_cleaner %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'cleaner_dashboard' %}">My Dashboard</a>
+      </li>
+      {% endif %}
       <!-- Show sign up links if user is not authenticated -->
       {% if not user.is_authenticated %}
       <li class="nav-item">
