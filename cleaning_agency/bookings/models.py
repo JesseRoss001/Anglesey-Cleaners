@@ -7,13 +7,15 @@ class GeneralLocation(models.Model):
     def __str__(self):
         return self.name
 
-class CleanerServiceArea(models.Model):
-    cleaner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="service_areas")
-    location = models.ForeignKey(GeneralLocation, on_delete=models.CASCADE)
-    travel_cost = models.DecimalField(max_digits=6, decimal_places=2)
+class CleanerAvailability(models.Model):
+    cleaner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="available_times")
+    date = models.DateField()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
 
     def __str__(self):
-        return f"{self.cleaner.username} services {self.location.name}"
+        return f"{self.cleaner.username} available on {self.date} from {self.start_time} to {self.end_time}"
+
 
 class Booking(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="customer_bookings")

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>My Dashboard</h1>
+
+<!-- Update Rates -->
+<form method="post">
+    {% csrf_token %}
+    {{ rate_form.as_p }}
+    <button type="submit">Update Rates</button>
+</form>
+
+<!-- Update Availability -->
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.as_p }}
+    {% endfor %}
+    <button type="submit">Update Availability</button>
+</form>
+
+{% endblock %}
