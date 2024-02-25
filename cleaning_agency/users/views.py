@@ -1,13 +1,35 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login
+from django.contrib.auth import authenticate, login as auth_login
 from .forms import CustomerSignUpForm, CleanerSignUpForm 
 from .models import CustomerProfile # You might create a CleanerProfile model similarly
 from django.contrib.auth.decorators import login_required
 from bookings.models import GeneralLocation
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+
+ # Make sure you have a LoginForm or adjust accordingly
 def home(request):
     # Your logic for the home page can go here
     return render(request, 'users/home.html')  # Render the home page template
-
+def login_request(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect('home')  # Adjust the redirect as needed
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    else:
+        form = AuthenticationForm()
+    return render(request, 'users/login.html', {'form': form})
 
 def customer_signup(request):
     if request.method == 'POST':
