@@ -12,9 +12,10 @@ class CleanerAvailability(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
+    notes = models.TextField(blank=True, null=True)  # New field for notes
 
     def __str__(self):
-        return f"{self.cleaner.username} available on {self.date} from {self.start_time} to {self.end_time}"
+        return f"{self.cleaner.username} available on {self.date} from {self.start_time} to {self.end_time} | Notes: {self.notes}"
 
 
 class Booking(models.Model):

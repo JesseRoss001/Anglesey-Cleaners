@@ -110,7 +110,7 @@
       {% endif %}
       {% if user.is_authenticated and user.is_cleaner %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'cleaner_dashboard' %}">My Dashboard</a>
+        <a class="nav-link" href="{% url 'bookings:cleaner_dashboard' %}">My Dashboard</a>
       </li>
       {% endif %}
       <!-- Show sign up links if user is not authenticated -->

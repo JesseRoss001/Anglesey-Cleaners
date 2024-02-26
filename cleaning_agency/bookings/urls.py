@@ -1,7 +1,9 @@
 from django.urls import path
-from .views import cleaner_dashboard, update_rates
+from .views import cleaner_dashboard, get_events 
+
+app_name = 'bookings'
 
 urlpatterns = [
     path('dashboard/', cleaner_dashboard, name='cleaner_dashboard'),
-    path('update_rates/', update_rates, name='update_rates'),
+     path('your-endpoint-to-get-events/', get_events, name='get_events'),
 ]
