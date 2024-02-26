@@ -6,5 +6,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),  # Set the home view at the root URL
     path('users/', include('users.urls')),  # Keep other users URLs
-    path('bookings/', include(('bookings.urls', 'bookings'), namespace='bookings'))
+    path('bookings/', include('bookings.urls')),
 ]

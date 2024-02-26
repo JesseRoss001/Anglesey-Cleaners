@@ -1,6 +1,5 @@
 from django import forms
 from .models import CleanerAvailability, TimeSlot
-from django.contrib.auth import get_user_model
 
 class CleanerAvailabilityForm(forms.ModelForm):
     timeslot = forms.ModelMultipleChoiceField(
@@ -8,11 +7,14 @@ class CleanerAvailabilityForm(forms.ModelForm):
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
-    
+    date = forms.DateField(widget=forms.HiddenInput())  # Explicitly define the date field
+
     class Meta:
         model = CleanerAvailability
         fields = ['date', 'timeslot', 'notes']
-        widgets = {
-            'date': forms.HiddenInput(),  # The date will be auto-filled, hence hidden
-            'notes': forms.Textarea(attrs={'rows': 2}),
-        }
+
+    def __init__(self, *args, **kwargs):
+        super(CleanerAvailabilityForm, self).__init__(*args, **kwargs)
+        # Set the initial value for the date field if it's not already set
+        if 'initial' in kwargs and 'date' in kwargs['initial']:
+            self.fields['date'].initial = kwargs['initial']['date']
