@@ -9,7 +9,16 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <title>{% block title %}Cleaning Services in Anglesey{% endblock title %}</title>
+<!-- FullCalendar CSS -->
+<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.css" rel="stylesheet">
 
+<!-- FullCalendar JS -->
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/interaction/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid/main.js"></script>
   <!-- Custom CSS -->
   <style>
     /* New Color Scheme */
@@ -175,8 +184,83 @@
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script>
-    // Your JavaScript here
-  </script>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!window.FullCalendar) {
+            console.error('FullCalendar not found on the window object. Make sure the library is loaded correctly.');
+            return;
+        }
+
+        var calendarEl = document.getElementById('calendar');
+        if (!calendarEl) {
+            console.error('Calendar element not found in the DOM.');
+            return;
+        }
+
+        try {
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ FullCalendar.interactionPlugin, FullCalendar.dayGridPlugin, FullCalendar.timeGridPlugin ],
+                initialView: 'timeGridWeek',
+                slotMinTime: '06:00:00',
+                slotMaxTime: '22:00:00',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                expandRows: true,
+                selectable: true,
+                selectMirror: true,
+                select: function(info) {
+                    alert('Selected timeslot: ' + info.startStr + ' to ' + info.endStr);
+                },
+                events: '{% url 'bookings:get_events' %}',
+                eventClick: function(info) {
+                    alert('Event: ' + info.event.title);
+                },
+                editable: true,
+                eventResizableFromStart: true,
+                eventDrop: function(info) {
+                    // Handle event drops (move to a different time)
+                },
+                eventResize: function(info) {
+                    // Handle event resizes (change duration)
+                }
+            });
+
+            calendar.render();
+        } catch (error) {
+            console.error('Error initializing FullCalendar:', error);
+        }
+
+        // CSRF token setup
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+
+        // Set up AJAX headers for CSRF token
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!settings.crossDomain && settings.url.indexOf(window.location.origin) === 0) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
