@@ -1,21 +1,30 @@
 from django.db import models
 from django.conf import settings
 
+class TimeSlot(models.Model):
+    time = models.TimeField()
+
+    def __str__(self):
+        return self.time.strftime("%I %p")
+
+class CleanerAvailability(models.Model):
+    cleaner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="available_times")
+    date = models.DateField()
+    timeslot = models.ManyToManyField(TimeSlot, related_name="available_slots")
+    notes = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        times = ', '.join([slot.time.strftime("%I %p") for slot in self.timeslot.all()])
+        return f"{self.cleaner.username} available on {self.date}: {times} | Notes: {self.notes}" 
+
+
 class GeneralLocation(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
 
-class CleanerAvailability(models.Model):
-    cleaner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="available_times")
-    date = models.DateField()
-    start_time = models.TimeField()
-    end_time = models.TimeField()
-    notes = models.TextField(blank=True, null=True)  # New field for notes
 
-    def __str__(self):
-        return f"{self.cleaner.username} available on {self.date} from {self.start_time} to {self.end_time} | Notes: {self.notes}"
 
 
 class Booking(models.Model):

@@ -1,21 +1,18 @@
 from django import forms
+from .models import CleanerAvailability, TimeSlot
 from django.contrib.auth import get_user_model
-from .models import CleanerAvailability
-
-User = get_user_model()
-
-class UpdateRatesForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['hourly_rate']
 
 class CleanerAvailabilityForm(forms.ModelForm):
+    timeslot = forms.ModelMultipleChoiceField(
+        queryset=TimeSlot.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
+    
     class Meta:
         model = CleanerAvailability
-        fields = ['date', 'start_time', 'end_time', 'notes']
+        fields = ['date', 'timeslot', 'notes']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
-            'start_time': forms.TimeInput(attrs={'type': 'time'}),
-            'end_time': forms.TimeInput(attrs={'type': 'time'}),
+            'date': forms.HiddenInput(),  # The date will be auto-filled, hence hidden
             'notes': forms.Textarea(attrs={'rows': 2}),
         }

@@ -4,28 +4,35 @@
 
 {% block content %}
 <div class="container">
-    <h2>Cleaner Dashboard</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ rate_form|crispy }}
-        <button type="submit" name="update_rates" class="btn btn-primary">Update Rates</button>
-    </form>
-    <hr>
     <h2>Set Your Availability</h2>
-<form method="post">
-    {% csrf_token %}
-    {% for date, form in forms.items %}
-    <div class="card">
-        <div class="card-header">
-            {{ date|date:"F d, Y" }}
+    <form method="post" id="availability-form">
+        {% csrf_token %}
+        {% for date, form in forms %}
+        <div class="card">
+            <div class="card-header">
+                {{ date|date:"F d, Y" }}
+            </div>
+            <div class="card-body">
+                <input type="hidden" name="{{ form.prefix }}-date" value="{{ date }}">
+                {{ form.timeslot }}
+                <label>Notes:</label>
+                {{ form.notes }}
+            </div>
         </div>
-        <div class="card-body">
-            {{ form.as_p }}
-        </div>
-    </div>
-    {% endfor %}
-    <button type="submit" class="btn btn-primary">Submit Availability</button>
-</form>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit Availability</button>
+    </form>
 </div>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkboxes = document.querySelectorAll('.timeslot-checkbox');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('click', function() {
+                this.value = this.checked ? 'Available' : 'Unavailable';
+            });
+        });
+    });
+</script>
 
 {% endblock %}
