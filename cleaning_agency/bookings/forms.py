@@ -12,10 +12,10 @@ class UpdateRatesForm(forms.ModelForm):
 class CleanerAvailabilityForm(forms.ModelForm):
     class Meta:
         model = CleanerAvailability
-        fields = ['date', 'start_time', 'end_time', 'notes']  # Include the new 'notes' field
+        fields = ['date', 'start_time', 'end_time', 'notes']
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'start_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'end_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
-            'notes': forms.Textarea(attrs={'class': 'form-control'}),  # Widget for notes
+            'date': forms.DateInput(attrs={'type': 'date'}),
+            'start_time': forms.TimeInput(attrs={'type': 'time'}),
+            'end_time': forms.TimeInput(attrs={'type': 'time'}),
+            'notes': forms.Textarea(attrs={'rows': 2}),
         }
