@@ -116,10 +116,11 @@
       </li>
       {% endif %}
       {% if user.is_authenticated and user.is_cleaner %}
+      <!-- Add a link to the availability dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'bookings:cleaner_dashboard' %}">My Dashboard</a>
+        <a class="nav-link" href="{% url 'availability_dashboard' %}">My Availability</a>
       </li>
-      {% endif %}
+    {% endif %}
       <!-- Show sign up links if user is not authenticated -->
       {% if not user.is_authenticated %}
       <li class="nav-item">
