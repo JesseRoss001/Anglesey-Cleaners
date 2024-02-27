@@ -16,21 +16,35 @@
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for date, form in days_forms %}
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-header text-center">
-            {{ date|date:"F d, Y" }}
-          </div>
-          <div class="card-body">
-            <form method="post" action="{% url 'update_availability' date|date:'Y-m-d' %}">
-              {% csrf_token %}
-              {{ form.as_p }}
+    <div class="col">
+      <div class="card h-100">
+        <div class="card-header text-center">
+          <strong>{{ date|date:"F d, Y" }}</strong>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'update_availability' date|date:'Y-m-d' %}">
+            {% csrf_token %}
+            {{ form.date }}
+            <div class="row">
+              {% for checkbox in form.timeslot %}
+                <div class="col-6 col-md-4">
+                  <div class="form-check">
+                    {{ checkbox.tag }}
+                    <label class="form-check-label" for="{{ checkbox.id_for_label }}">
+                      {{ checkbox.choice_label }}
+                    </label>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <div class="d-grid gap-2 mt-3">
               <button type="submit" class="btn btn-primary">Save</button>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
-    {% endfor %}
+    </div>
+  {% endfor %}
   </div>
 <!-- Pagination Links -->
 
