@@ -5,6 +5,7 @@
 {% block content %}
 <div class="container">
   <h2 class="my-4 text-center">My Availability</h2>
+
   <div class="d-flex justify-content-between my-4">
     {% if previous_week_offset is not None %}
       <a href="{% url 'availability_dashboard' %}?week={{ previous_week_offset }}" class="btn btn-secondary">&larr; Previous Week</a>
@@ -45,6 +46,21 @@
       </div>
     </div>
   {% endfor %}
+  </div>
+  <div class="alert alert-info mt-4" role="alert">
+    <h4 class="alert-heading">Availability Responsibility</h4>
+    <p>By making yourself available, you are responsible for attending bookings with clients. Please be aware of our strike policy:</p>
+    <hr>
+    <div class="row">
+      <div class="col-sm-6">
+        <h5 class="text-danger">New Cleaners</h5>
+        <p>You will be on a 1-strike policy. Missing a booking will lead to immediate suspension.</p>
+      </div>
+      <div class="col-sm-6">
+        <h5 class="text-success">Established Cleaners</h5>
+        <p>Established cleaners benefit from a 3-strike policy, allowing for occasional unforeseen circumstances.</p>
+      </div>
+    </div>
   </div>
 <!-- Pagination Links -->
 
