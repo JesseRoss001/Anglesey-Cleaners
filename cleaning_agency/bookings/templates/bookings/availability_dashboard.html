@@ -5,21 +5,26 @@
 {% block content %}
 <div class="container">
   <h2 class="my-4 text-center">My Availability</h2>
-  <div class="my-3 text-center">
-    <a href="{% url 'availability_dashboard' %}?page={{ next_page }}" class="btn btn-secondary">See More</a>
+  <div class="d-flex justify-content-between my-4">
+    {% if previous_week_offset is not None %}
+      <a href="{% url 'availability_dashboard' %}?week={{ previous_week_offset }}" class="btn btn-secondary">&larr; Previous Week</a>
+    {% else %}
+      <a class="btn btn-secondary disabled">&larr; Previous Week</a>
+    {% endif %}
+    
+    <a href="{% url 'availability_dashboard' %}?week={{ next_week_offset }}" class="btn btn-secondary">Next Week &rarr;</a>
   </div>
   <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for date, form in days_forms %}
       <div class="col">
         <div class="card h-100">
-          <div class="card-header">
-            <strong>{{ date|date:"F d, Y" }}</strong>
+          <div class="card-header text-center">
+            {{ date|date:"F d, Y" }}
           </div>
           <div class="card-body">
             <form method="post" action="{% url 'update_availability' date|date:'Y-m-d' %}">
               {% csrf_token %}
               {{ form.as_p }}
-              <input type="hidden" class="disabled" name="date" value="{{ date|date:'Y-m-d' }}" />
               <button type="submit" class="btn btn-primary">Save</button>
             </form>
           </div>
@@ -27,5 +32,7 @@
       </div>
     {% endfor %}
   </div>
+<!-- Pagination Links -->
+
 </div>
 {% endblock %}

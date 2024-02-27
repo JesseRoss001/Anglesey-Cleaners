@@ -12,3 +12,4 @@ class CleanerAvailabilityForm(forms.ModelForm):
     class Meta:
         model = CleanerAvailability
         fields = ['date', 'timeslot']
+        widgets = {'date': forms.HiddenInput()}  # Set the date field as a hidden input
