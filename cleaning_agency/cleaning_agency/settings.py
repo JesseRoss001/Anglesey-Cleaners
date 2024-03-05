@@ -16,8 +16,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['angleseydomesticcleaners-370ce070db19.herokuapp.com','8000-jesseross00-angleseycle-llu78ifpw9o.ws-eu108.gitpod.io']
-CSRF_TRUSTED_ORIGINS =['https://8000-jesseross00-angleseycle-llu78ifpw9o.ws-eu108.gitpod.io']
+ALLOWED_HOSTS = ['angleseydomesticcleaners-370ce070db19.herokuapp.com','*']
+CSRF_TRUSTED_ORIGINS =['https://8000-jesseross00-angleseycle-03r1pprn0c4.ws-eu108.gitpod.io']
 # Application definition
 
 INSTALLED_APPS = [
