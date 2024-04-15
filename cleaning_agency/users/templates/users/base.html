@@ -19,53 +19,73 @@
 
   <!-- Custom CSS -->
   <style>
-    /* New Color Scheme */
-    :root {
-      --primary-color: #0056b3; /* A deep blue shade */
-      --secondary-color: #e9ecef; /* A soft off-white background */
-      --accent-color: #ffc107; /* A bright accent color */
-      --text-color: #343a40; /* A dark grey for readable text */
-    }
-    
-    /* Use the root variables */
-    body {
-      background-color: var(--secondary-color);
-      color: var(--text-color);
-      padding:0px;
-      margin:0px;
-    }
-    
-    /* Style the navbar with a shadow for depth */
-    .navbar {
-      background-color: var(--primary-color);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Change the navbar link colors */
-    .navbar .nav-link {
-      color: var(--secondary-color);
-    }
-    
-    /* Style the hover effect for navbar links */
-    .navbar .nav-link:hover,
-    .navbar .nav-link:focus {
-      color: var(--accent-color);
-      background-color: transparent;
-    }
-    
-    /* Style the buttons with a transition for a smooth hover effect */
-    .btn-primary {
-      background-color: var(--primary-color);
-      border-color: var(--primary-color);
-      color: var(--secondary-color);
-      transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-      color: var(--primary-color);
-    }
+   /* New Magenta Color Scheme */
+   :root {
+    --primary-color: #861360; /* Magenta shade */
+    --secondary-color: #e9ecef; /* A soft off-white background */
+    --accent-color: #ffc107; /* A bright accent color */
+    --text-color: #220317; /* White text for better contrast on magenta background */
+  }
+  
+  /* Use the root variables */
+  body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* Style the navbar with a shadow for depth */
+  .navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Use the root variables */
+  body {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 0px;
+    margin: 0px;
+  }
+
+  /* Style the navbar with a shadow for depth */
+  .navbar {
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Change the navbar link colors to white and increase font size */
+  .navbar .nav-link,
+  .navbar .navbar-brand {
+    color: white !important; /* Override any other styles */
+    font-size: 18px; /* Increase font size */
+    margin:0.8em;
+  }
+  
+  /* Modify the logo to fit the new theme */
+  .navbar .logo {
+    max-width: 100px; /* Adjust the size as necessary */
+    border-radius: 50%; /* Makes the logo round */
+    box-shadow: 2px 2px 2px rgb(75, 8, 62); /* Optional: Adds a subtle shadow */
+  }
+  
+  /* Style adjustments for navbar toggler */
+  .navbar-toggler , .navbar-collapse{
+    border-color: rgba(227, 203, 228, 0.9);
+    color:white;
+    border-color: white;
+  }
+  
+  .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 0.75)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+  /* Style for active navigation item */
+  .nav-item .active {
+    font-weight: bold;
+    color: var(--accent-color) !important; /* Ensure the active color is applied */
+  }
     
     footer {
   background-color: #861360; /* Magenta color */
@@ -104,63 +124,155 @@ footer address {
     flex-direction: column;
   }
 }
+
+
+svg {
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.active svg {
+  transform: rotate(90deg);
+}
+path {
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dasharray 500ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+path:nth-child(1) {
+  transform-origin: 36% 40%;
+}
+path:nth-child(2) {
+  stroke-dasharray: 29 299;
+}
+path:nth-child(3) {
+  transform-origin: 35% 63%;
+}
+path:nth-child(4) {
+  stroke-dasharray: 29 299;
+}
+path:nth-child(5) {
+  transform-origin: 61% 52%;
+}
+path:nth-child(6) {
+  transform-origin: 62% 52%;
+}
+.active path:nth-child(1) {
+  transform: translateX(9px) translateY(1px) rotate(45deg);
+}
+.active path:nth-child(2) {
+  stroke-dasharray: 225 299;
+  stroke-dashoffset: -72px;
+}
+.active path:nth-child(3) {
+  transform: translateX(9px) translateY(1px) rotate(-45deg);
+}
+.active path:nth-child(4) {
+  stroke-dasharray: 225 299;
+  stroke-dashoffset: -72px;
+}
+.active path:nth-child(5) {
+  transform: translateX(9px) translateY(1px) rotate(-45deg);
+}
+.active path:nth-child(6) {
+  transform: translateX(9px) translateY(1px) rotate(45deg);
+}
+
   </style>
   
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Logo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
-          </li>
-      <!-- Show 'Book Now' if user is authenticated and is a customer -->
-      {% if user.is_authenticated and user.is_customer %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'book_now' %}">Book Now</a>
-      </li>
-      {% endif %}
-      {% if user.is_authenticated and user.is_cleaner %}
-      <!-- Add a link to the availability dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'availability_dashboard' %}">My Availability</a>
-      </li>
-    {% endif %}
-      <!-- Show sign up links if user is not authenticated -->
-      {% if not user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'login' %}">Login</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'customer_signup' %}">Customer Sign Up</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'cleaner_signup' %}">Cleaner Sign Up</a>
-      </li>
-      {% endif %}
 
-      <!-- Show a logout link if user is authenticated -->
-      {% if user.is_authenticated %}
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-      </li>
-      {% endif %}
-    </ul>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="https://res.cloudinary.com/dcyczegvo/image/upload/v1713191686/2024-03-12_brauck.webp" alt="Anglesey Domestic Cleaners Logo" class="logo-navbar " style="max-width: 80px;">
+    </a>
+    <button class="navbar-toggler m-0 p-0 border-0" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleSVG()">
+      <div class="container p-0 m-0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 200 200">
+              <g stroke-width="6.5" stroke-linecap="round">
+                <path
+                  d="M72 82.286h28.75"
+                  fill="#009100"
+                  fill-rule="evenodd"
+                  stroke="#fff"
+                />
+                <path
+                  d="M100.75 103.714l72.482-.143c.043 39.398-32.284 71.434-72.16 71.434-39.878 0-72.204-32.036-72.204-71.554"
+                  fill="none"
+                  stroke="#fff"
+                />
+                <path
+                  d="M72 125.143h28.75"
+                  fill="#009100"
+                  fill-rule="evenodd"
+                  stroke="#fff"
+                />
+                <path
+                  d="M100.75 103.714l-71.908-.143c.026-39.638 32.352-71.674 72.23-71.674 39.876 0 72.203 32.036 72.203 71.554"
+                  fill="none"
+                  stroke="#fff"
+                />
+                <path
+                  d="M100.75 82.286h28.75"
+                  fill="#009100"
+                  fill-rule="evenodd"
+                  stroke="#fff"
+                />
+                <path
+                  d="M100.75 125.143h28.75"
+                  fill="#009100"
+                  fill-rule="evenodd"
+                  stroke="#fff"
+                />
+              </g>
+            </svg>
+      </div>
+      
+    </button>
+    <div class="collapse navbar-collapse " id="navbarNav">
+      <ul class="navbar-nav text-white ms-auto me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'services' %}">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+        <!-- Show links based on user authentication and role -->
+        {% if user.is_authenticated %}
+          {% if user.is_customer %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'book_now' %}">Book Now</a>
+            </li>
+          {% endif %}
+          {% if user.is_cleaner %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'availability_dashboard' %}">My Availability</a>
+            </li>
+          {% endif %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url  'customer_signup' %}">Client Signup</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cleaner_signup' %}">Staff Signup</a>
+          </li>
+
+        {% endif %}
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -197,6 +309,30 @@ footer address {
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://kit.fontawesome.com/48bcbf2c30.js" crossorigin="anonymous"></script>
-
+  <script>
+    // We'll keep track of the toggle state
+    let isNavCollapsed = true;
+  
+    function toggleSVG(event) {
+      // Toggle the 'active' class on the SVG container
+      const container = document.querySelector('.navbar-toggler > .container');
+      container.classList.toggle('active');
+  
+      // Manually handle the collapse action
+      let nav = document.getElementById('navbarNav');
+      if (isNavCollapsed) {
+        new bootstrap.Collapse(nav, { toggle: false }).show();
+      } else {
+        new bootstrap.Collapse(nav, { toggle: false }).hide();
+      }
+      // Update the collapsed state
+      isNavCollapsed = !isNavCollapsed;
+  
+      // If this function was triggered by an event, stop it from bubbling
+      if (event) {
+        event.stopPropagation();
+      }
+    }
+  </script>
 </body>
 </html>

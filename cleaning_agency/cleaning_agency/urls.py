@@ -7,4 +7,7 @@ urlpatterns = [
     path('', home, name='home'),  # Set the home view at the root URL
     path('users/', include('users.urls')),  # Keep other users URLs
     path('bookings/', include('bookings.urls')),  # Include your bookings.urls
+    path('about/', include('about.urls')),  # Include your about.urls
+    path('contact/', include('contact.urls')),  # Include your contact.urls
+    path('services/', include('services.urls')),  # Include your services.urls
 ]
