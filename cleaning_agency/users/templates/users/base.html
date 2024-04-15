@@ -59,7 +59,7 @@
   .navbar .nav-link,
   .navbar .navbar-brand {
     color: white !important; /* Override any other styles */
-    font-size: 18px; /* Increase font size */
+    font-size: 15px; /* Increase font size */
     margin:0.8em;
   }
   
@@ -154,8 +154,10 @@ footer address {
       text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Soft shadow for better readability */
       margin-bottom: 1rem; /* Space below the header */
     }
-
-    @media (max-width:480px) {   .header-text {font-size: 15px;}
+    @media (max-width:384px) {   .header-text {font-size: 12px;}
+      
+    }
+    @media (max-width:480px) {   .header-text {font-size: 20px;}
       
     }
 
@@ -220,6 +222,12 @@ path:nth-child(6) {
 .active path:nth-child(6) {
   transform: translateX(9px) translateY(1px) rotate(45deg);
 }
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
 
   </style>
   
@@ -228,16 +236,16 @@ path:nth-child(6) {
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-  <div class="container-fluid">
+  <div class="container-fluid justify-content-evenly align-items-center">
     <a class="navbar-brand" href="{% url 'home' %}">
       <div class="d-none d-md-flex d-lg-none d-xl-flex logo-container">
         <img src="https://res.cloudinary.com/dcyczegvo/image/upload/v1713191686/2024-03-12_brauck.webp" alt="Anglesey Domestic Cleaners Logo" class="logo-navbar">
       </div>
       <div class="d-flex d-md-none header-text mt-2  ">Anglesey Domestic Cleaners</div>
     </a>
-    <div class="d-none d-md-flex header-text mt-2 pt-3 ps-2 ps-xl-5">Anglesey Domestic Cleaners</div>
-    <button class="navbar-toggler m-0 mb-1 p-0 border-0" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleSVG()">
-      <div class="container p-0 m-0">
+    <div class="d-none d-md-flex header-text mt-2 pt-3  ps-xl-5">Anglesey Domestic Cleaners</div>
+    <button class="navbar-toggler  m-0 mb-1  p-0 border-0" type="button" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleSVG()">
+      <div class="container border-none p-0 m-0">
         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 200 200">
               <g stroke-width="6.5" stroke-linecap="round">
                 <path
