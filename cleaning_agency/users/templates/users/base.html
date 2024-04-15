@@ -67,25 +67,45 @@
       color: var(--primary-color);
     }
     
-    /* More styles... */
-    
-    /* Style the footer */
     footer {
-      background-color: var(--primary-color);
-      color: var(--secondary-color);
-      width:100vw;
-    }
-    
-    /* Hover effects for links in the footer */
-    footer a {
-      color: var(--secondary-color);
-      transition: color 0.3s ease-in-out;
-    }
-    
-    footer a:hover {
-      color: var(--accent-color);
-    }
+  background-color: #861360; /* Magenta color */
+  color: white;
+}
+
+footer a {
+  color: white;
+  margin: 0 10px;
+  font-size: 24px; /* Adjust size as needed */
+}
+
+footer a:hover {
+  color: #f8f9fa;
+}
+
+footer .logo {
+  box-shadow: 2px 2px 2px rgb(75, 8, 62);
+}
+
+footer address {
+  white-space: pre-line; /* Ensures formatting of address */
+  text-align: center;
+}
+
+.footer-i {padding:10px;
+  box-shadow: 2px 2px 2px rgb(75, 8, 62);}
+
+/* Responsive design for footer */
+@media (max-width: 992px) {
+  footer .row > div {
+    margin-bottom: 15px;
+  }
+
+  footer .row {
+    flex-direction: column;
+  }
+}
   </style>
+  
 </head>
 <body>
   <!-- Navbar -->
@@ -148,42 +168,35 @@
   <!-- Page specific content goes here -->
   {% endblock content %}
 
-  <!-- Footer -->
-  <footer class="bg-dark text-white pt-4 pb-2 " >
-  
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <p><strong>Logo</strong></p>
-          <p>Stay up to date on features and releases by joining our newsletter.</p>
-          <!-- Newsletter Form -->
-          <form>
-            <div class="mb-3">
-              <input type="email" class="form-control" placeholder="Enter your email">
-            </div>
-            <button type="submit" class="btn btn-primary">Subscribe</button>
-          </form>
-        </div>
-        <!-- Footer Links -->
-        <div class="col-md-3">
-          <p><strong>Column One</strong></p>
-          <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Link One</a></li>
-            <!-- Add more links as needed -->
-          </ul>
-        </div>
-        <!-- More Footer Columns -->
-        <!-- ... -->
+<!-- Footer -->
+<footer class="footer mt-auto py-3  text-center text-lg-start ">
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-lg-4 d-flex align-items-center justify-content-lg-start justify-content-center mb-3 mb-lg-0">
+        <img src="https://res.cloudinary.com/dcyczegvo/image/upload/v1713191686/2024-03-12_brauck.webp" alt="Anglesey Domestic Cleaners Logo" class="logo border rounded" style="max-width: 150px;">
+      </div>
+      <div class="col-lg-4 d-flex flex-column align-items-center justify-content-center">
+        <address class="mb-0 m-3">
+          <strong>Anglesey Domestic Cleaners</strong><br>
+          Caergeiliog, Holyhead<br>
+          North Wales<br>
+          LL65 3LU
+        </address>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-lg-end justify-content-center">
+        <a href="https://maps.app.goo.gl/qTEeV75J2GVExVoJA" aria-label="Google Business" target="_blank"><i  class="fab fa-google footer-i"></i></a>
+        <a href="https://www.linkedin.com/company/anglesey-domestic-cleaners/" class="ms-3" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in footer-i "></i></a>
+        <a href="https://www.facebook.com/AngleseyDomesticCleaners" class="ms-3" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f footer-i"></i></a>
       </div>
     </div>
-  
-  </footer>
+  </div>
+</footer>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins and FullCalendar) -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <!-- Bootstrap Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://kit.fontawesome.com/48bcbf2c30.js" crossorigin="anonymous"></script>
 
 </body>
 </html>
