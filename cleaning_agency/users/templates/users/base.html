@@ -21,9 +21,10 @@
   <style>
    /* New Magenta Color Scheme */
    :root {
-    --primary-color: #861360; /* Magenta shade */
+    --primary-color: #57144E
+; /* Magenta shade */
     --secondary-color: #e9ecef; /* A soft off-white background */
-    --accent-color: #ffc107; /* A bright accent color */
+    
     --text-color: #220317; /* White text for better contrast on magenta background */
   }
   
@@ -88,7 +89,7 @@
   }
     
     footer {
-  background-color: #861360; /* Magenta color */
+  background-color: #57144E; /* Magenta color */
   color: white;
 }
 
@@ -127,8 +128,8 @@ footer address {
 
     /* Zoom in on the image */
     .logo-container {
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       overflow: hidden;
       border-radius: 50%; /* Makes the logo round */
       display: inline-block;
@@ -136,12 +137,12 @@ footer address {
     }
     
     .logo-navbar {
-      width: auto;
-      height: 100%;
+      width: 100px;
+      height: 100px;
       object-fit: cover;
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 56%;
       transform: translate(-50%, -50%);
     }
 
@@ -320,13 +321,13 @@ path:nth-child(6) {
           <li class="nav-item">
             <a class="nav-link" href="{% url  'customer_signup' %}">Client Signup</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Login</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'cleaner_signup' %}">Staff Signup</a>
           </li>
-
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
         {% endif %}
       </ul>
     </div>

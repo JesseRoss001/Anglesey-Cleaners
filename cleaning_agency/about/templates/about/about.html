@@ -1,0 +1,134 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<style>
+/* About page custom styles */
+.about-section {
+    border: 1px solid #57144E; /* Subtle border */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1); /* Inner shadow for sunken effect */
+    background-color: #fff; /* Clean white background */
+    color: #57144E; /* Professional dark magenta for text */
+    font-family: 'Open Sans', sans-serif; /* A professional font choice */
+    padding: 2rem; /* Spacing around the content */
+    margin-bottom: 2rem; /* Spacing below the section */
+}
+
+.about-heading {
+    color: #821F8E; /* Magenta used for headings */
+}
+
+/* Responsive typography */
+h1, h2, p {
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 1.75rem; /* Starting size for h1 */
+}
+h2 {
+    font-size: 1.5rem; /* Starting size for h2 */
+}
+p {
+    font-size: 1rem; /* Starting size for paragraph */
+}
+
+@media (min-width: 576px) {
+    h1 { font-size: 2rem; } /* Slightly larger on small devices */
+    h2 { font-size: 1.75rem; }
+}
+
+@media (min-width: 768px) {
+    h1 { font-size: 2.25rem; } /* Larger on medium devices */
+    h2 { font-size: 2rem; }
+}
+
+@media (min-width: 992px) {
+    h1 { font-size: 2.5rem; } /* Larger on large devices */
+    h2 { font-size: 2.25rem; }
+}
+
+/* Card styling */
+.card-custom {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* More pronounced shadow for 3D effect */
+}
+
+
+.card-header-custom {
+    background: linear-gradient(to right, #821F8E, #57144E); /* Gradient from magenta to dark magenta */
+    color: #fff;
+}
+
+.card-body-custom {
+    background-color: #fff;
+    color: #57144E;
+}
+
+/* Link/Button styling */
+.btn-custom {
+    background: linear-gradient(to right, #57144E, #821F8E); /* Reverse gradient for dynamic effect */
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    transition: background 0.3s ease-in-out; /* Smooth transition for hover effect */
+}
+
+.btn-custom:hover {
+    background: linear-gradient(to right, #821F8E, #D3B9D6); /* Lighter gradient on hover */
+}
+
+@media (min-width:990px) {  
+    .card-body-custom {
+ height:200px;
+}
+    
+}
+</style>
+
+<div class="container mt-5 about-section">
+    <section class="mb-5 text-center pt-5">
+        <h1 class="about-heading"> Anglesey Domestic Cleaners</h1>
+        <p>
+            To redefine cleaning services through innovative technology, exceptional service standards, and a community-focused approach, contributing positively to the local economy and well-being of Anglesey.
+        </p>
+    </section>
+
+    <section class="mb-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card card-custom">
+                    <div class="card-header card-header-custom">Efficiency & Reliability</div>
+                    <div class="card-body card-body-custom">
+                        <p>Reclaim your time with our efficient service, handled by a dedicated team of professionals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-3">
+                <div class="card card-custom">
+                    <div class="card-header card-header-custom">Local Employment</div>
+                    <div class="card-body card-body-custom">
+                        <p>We take pride in creating jobs within our community and upholding local economic growth.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 mb-3">
+                <div class="card card-custom">
+                    <div class="card-header card-header-custom">Quality Standards</div>
+                    <div class="card-body card-body-custom">
+                        <p>Our rigorous standards ensure that your home is not just cleaned, but cared for with the utmost attention to detail.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-center pb-5 mb-5">
+        <h2 class="about-heading ">Founder's Background</h2>
+        <p>
+            Founded by an ex-math tutor and full-stack developer, our company stands on a foundation of operational excellence and innovation in service.
+        </p>
+        <a href="link_to_contact_page " class="btn btn-custom">Get in Touch With Us</a>
+    </section>
+</div>
+{% endblock %}

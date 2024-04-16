@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'users',
     "crispy_forms",
     "crispy_bootstrap5",
-    'bookings',  # Replace 'your_app_name' with the name of your Django app
+    'bookings',
+    'about',  # Replace 'your_app_name' with the name of your Django app
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -49,21 +50,25 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'cleaning_agency.urls'
 
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',  # Required for the admin sidebar
+                'django.contrib.auth.context_processors.auth',  # Required for using the admin
+                'django.contrib.messages.context_processors.messages',  # Required for admin messages
+                'django.template.context_processors.media',  # If you use media files in templates
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'cleaning_agency.wsgi.application'
 
