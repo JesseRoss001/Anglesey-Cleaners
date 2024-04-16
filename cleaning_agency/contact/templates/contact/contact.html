@@ -1,0 +1,344 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+    .contact-container {
+        padding: 2rem;
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .contact-heading {
+        font-size: 2.5rem;
+        color: #57144E;
+        /* or your theme color */
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .contact-subtext {
+        text-align: center;
+        color: #333;
+        margin-bottom: 2rem;
+    }
+
+    .form-control {
+        border: 2px solid #821F8E;
+        border-radius: 0.5rem;
+        margin-bottom: 1.5rem;
+        padding: 0.5rem;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #57144E;
+    }
+
+    .btn-contact {
+        background-color: #821F8E;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        color: white;
+        width: 100%;
+    }
+
+    .btn-contact:hover {
+        background-color: #57144E;
+    }
+
+    @media (max-width: 768px) {
+        .contact-heading {
+            font-size: 1.5rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .contact-heading {
+            font-size: 1.25rem;
+        }
+
+        .contact-container {
+            padding: 1rem;
+        }
+    }
+
+    .faq-section {
+        padding: 2rem;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .faq-heading {
+        font-size: 1.5rem;
+        color: #57144E;
+        /* or your theme color */
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .accordion-item {
+        border: none;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* optional for shadow effect */
+    }
+
+    .accordion-button {
+        background-color: #D3B9D6;
+        /* Light purple */
+        color: #57144E;
+    }
+
+    .accordion-button:not(.collapsed) {
+        color: #fff;
+        background-color: #821F8E;
+        /* Darker purple */
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+    }
+
+    .accordion-body {
+        background-color: #f8f9fa;
+        /* very light gray, can change based on your design */
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Don't forget to include Bootstrap JS and CSS for proper accordion functionality -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    // Update the jQuery script
+    $(document).ready(function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'post',
+                url: '', // Leave action empty to post to the same URL
+                data: $('form').serialize(),
+                success: function (response) {
+                    // Clear the form
+                    $('form').trigger('reset');
+                    // Display the success message to the user
+                    $('#successMessage').show(); // Show the success message
+                },
+                error: function () {
+                    // Optionally handle the error by showing an error message within the page as well
+                    $('#errorMessage').show(); // You'd add this element similar to successMessage
+                }
+            });
+        });
+
+        // If using Bootstrap 5, you may need to manually handle the dismissible alert
+        $('.btn-close').on('click', function () {
+            $(this).parent().hide();
+        });
+    });
+</script>
+
+<div class="contact-container">
+    <div id="successMessage" class="alert alert-success" role="alert" style="display: none;">
+        Your message has been sent successfully!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h2 class="contact-heading pt-5">Say Hello To Us</h2>
+    <p class="contact-subtext">
+        Not a fan of forms? You can contact us at +447367292269 or help.angleseycleaners@gmail.com
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.name }}
+        {{ form.email }}
+        {{ form.message }}
+        <button type="submit" class="btn btn-contact">Send</button>
+    </form>
+</div>
+<!-- Question 3 -->
+<div class="faq-section">
+    <h2 class="faq-heading">Frequently Asked Questions</h2>
+
+    <div class="accordion" id="accordionFAQ">
+
+        <!-- Question 1 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="true" aria-controls="collapseOne">
+                    What services do Anglesey Domestic Cleaners offer?
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    We offer a range of services tailored for busy lifestyles, including Regular Cleaning, One-Off
+                    Cleaning, After Build Cleaning, and End of Tenancy Cleaning, all provided with exceptional service
+                    standards.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    How does Anglesey Domestic Cleaners contribute to the local community?
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Our business is dedicated to supporting the local economy by hiring local cleaners and contributing
+                    to community well-being through reliable and efficient cleaning services.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    What makes Anglesey Domestic Cleaners stand out from the competition?
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Our unique selling point is our modern online booking system and providing a platform for cleaners
+                    to find work efficiently.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Who can benefit from Anglesey Domestic Cleaners' services?
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Our services are perfect for working professionals, single parents, the elderly, and students—really
+                    anyone
+                    with a busy schedule who values a clean home.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                    What is the pricing strategy for Anglesey Domestic Cleaners?
+                </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    We charge £18 per hour for our cleaning services, with a focus on delivering value and a
+                    high-quality
+                    service at a competitive rate.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    How flexible are the cleaning plans with Anglesey Domestic Cleaners?
+                </button>
+            </h2>
+            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Our plans are highly customizable. Clients can book services as per their convenience, whether it's
+                    a
+                    one-time service or a regular cleaning schedule.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 7 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSeven">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                    Can customers trust the cleaners from Anglesey Domestic Cleaners?
+                </button>
+            </h2>
+            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Absolutely. We ensure all our cleaners are vetted, certified, and trained to provide the highest
+                    standard of
+                    service.
+                </div>
+            </div>
+        </div>
+        <!-- Question 8 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingEight">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    How does the booking process work at Anglesey Domestic Cleaners?
+                </button>
+            </h2>
+            <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Booking is simple and can be done online. Customers fill out a form detailing their cleaning needs
+                    and pay with our trusted partner stripe.
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 9 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingNine">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    What payment methods are accepted?
+                </button>
+            </h2>
+            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    We use stripe's secure payment platform so that customers can pay with ease in a secure environment
+                </div>
+            </div>
+        </div>
+
+        <!-- Question 10 -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTen">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                    What is the long-term vision for Anglesey Domestic Cleaners?
+                </button>
+            </h2>
+            <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                data-bs-parent="#accordionFAQ">
+                <div class="accordion-body">
+                    Our aim is to establish long-term partnerships within the community and government, build a loyal
+                    customer
+                    base, and continue supporting the well-being of the Anglesey and North Wales community.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

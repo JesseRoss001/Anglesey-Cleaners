@@ -16,8 +16,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['angleseydomesticcleaners-370ce070db19.herokuapp.com','*']
-CSRF_TRUSTED_ORIGINS =['https://8000-jesseross00-angleseycle-03r1pprn0c4.ws-eu108.gitpod.io']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://*.gitpod.io']
 # Application definition
 
 INSTALLED_APPS = [
@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     'bookings',
-    'about',  # Replace 'your_app_name' with the name of your Django app
+    'about',
+    'contact',  # Replace 'your_app_name' with the name of your Django app
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
@@ -116,6 +117,21 @@ cloudinary.config(
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
+
+ANYMAIL = {
+    "MAILJET_API_KEY": "0ef641b51ea63176b36792f30a1c13e0",
+    "MAILJET_SECRET_KEY": "8b6a67b8e18eecd4b54df51a1a7a7a1f",
+    "MAILJET_SEND_DEFAULTS": {
+        "esp_extra": {
+            # Add any Mailjet-specific send settings here
+        },
+    },
+}
+
+EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
+DEFAULT_FROM_EMAIL = "help.angleseycleaners@gmail.com"
+
+
 
 # Heroku settings
 import django_heroku
