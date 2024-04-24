@@ -40,8 +40,7 @@ def customer_signup(request):
             user.save()
             
             # Assuming 'selected_areas' returns a list of IDs for GeneralLocation instances
-            selected_area_ids = form.cleaned_data['selected_areas']
-            selected_areas = GeneralLocation.objects.filter(id__in=selected_area_ids)
+
 
             # Create CustomerProfile
             customer_profile = CustomerProfile.objects.create(
@@ -52,8 +51,7 @@ def customer_signup(request):
                 city=form.cleaned_data['city']
             )
             
-            # Assign selected_areas
-            customer_profile.selected_areas.set(selected_areas)
+
             
             login(request, user)
             return redirect('home')
@@ -72,7 +70,7 @@ def cleaner_signup(request):
             # Set cleaner-specific fields
             user.contact_number = form.cleaned_data['contact_number'] 
             user.hourly_rate = form.cleaned_data['hourly_rate']
-            user.general_area = form.cleaned_data['general_area']
+            
 
             user.save()  # Now save the user
 
@@ -82,7 +80,7 @@ def cleaner_signup(request):
                 user.save()  # Save again if the image was updated
 
             # Many-to-Many Relationship
-            user.selected_areas.set(form.cleaned_data['selected_areas']) 
+
 
             # You likely don't need to create a CleanerProfile here since
             # the cleaner-specific data is already on the User model

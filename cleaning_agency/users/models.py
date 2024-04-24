@@ -13,19 +13,7 @@ class User(AbstractUser):
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)  
     image = models.ImageField(upload_to='cleaner_images/', null=True, blank=True)  
     # Add related_name for general_area and selected_areas to avoid clashing
-    general_area = models.ForeignKey(
-        GeneralLocation, 
-        on_delete=models.SET_NULL, 
-        null=True, 
-        blank=True, 
-        related_name='users_with_general_area'
-    )
-    selected_areas = models.ManyToManyField(
-        GeneralLocation, 
-        verbose_name="Selected Service Areas", 
-        blank=True, 
-        related_name='users_with_selected_areas'
-    )
+
 
 
 class CustomerProfile(models.Model):

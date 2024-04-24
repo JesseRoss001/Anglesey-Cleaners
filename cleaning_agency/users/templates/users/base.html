@@ -27,6 +27,19 @@
     
     --text-color: #220317; /* White text for better contrast on magenta background */
   }
+  html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto; /* The .content will grow and shrink as needed, not allowing it to automatically shrink past its content size. */
+}
+
+.footer {
+  flex-shrink: 0; /* Prevent the footer from shrinking */
+}
   
   /* Use the root variables */
   body {
@@ -333,11 +346,11 @@ path:nth-child(6) {
     </div>
   </div>
 </nav>
-
+<div class="content d-flex justify-content-center align-items-center">
   {% block content %}
   <!-- Page specific content goes here -->
   {% endblock content %}
-
+</div>
 <!-- Footer -->
 <footer class="footer mt-auto py-3  text-center text-lg-start ">
   <div class="container mb-3">

@@ -8,12 +8,11 @@ class CustomerSignUpForm(UserCreationForm):
     address_line_1 = forms.CharField(max_length=100)
     address_line_2 = forms.CharField(max_length=100, required=False)
     city = forms.CharField(max_length=50)
-    selected_areas = forms.ModelMultipleChoiceField(queryset=GeneralLocation.objects.all())
 
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = UserCreationForm.Meta.fields + ('email', 'postcode', 'address_line_1', 'address_line_2', 'city', 'selected_areas')
+        fields = UserCreationForm.Meta.fields + ('email', 'postcode', 'address_line_1', 'address_line_2', 'city' )
 
 class CleanerSignUpForm(UserCreationForm):
     contact_number = forms.CharField(max_length=20)
